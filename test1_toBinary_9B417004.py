@@ -4,8 +4,8 @@ def decimal_to_binary(n):
         x+=str(n%2)
         n//=2
     x+="1"
-    print(x[::-1]);
+    return x[::-1]
 
 
 
-print(decimal_to_binary(1))
+print(decimal_to_binary(11))
