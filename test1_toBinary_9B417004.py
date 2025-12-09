@@ -1,4 +1,4 @@
-def decimal_to_binary(n):
+def decimal_to_binary(n:int) ->str:
     x=""
     while n>1:
         x+=str(n%2)
