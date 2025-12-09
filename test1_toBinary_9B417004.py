@@ -8,4 +8,4 @@ def decimal_to_binary(n):
 
 
 
-print(decimal_to_binary(7))
+print(decimal_to_binary(1))
