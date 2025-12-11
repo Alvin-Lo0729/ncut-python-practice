@@ -97,3 +97,5 @@ But 'tis the wet that makes it die no doubt."""
 
 print("poem[:13]:",poem[:13])
 print(len(poem))
+
+print(poem.title())
