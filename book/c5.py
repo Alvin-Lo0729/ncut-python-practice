@@ -111,3 +111,14 @@ print(setup.swapcase())
 print(setup.center(30))
 print(setup.rjust(30))
 print(setup.ljust(30))
+
+txt1 = "My name is {fname}, I'm {age}".format(fname="John", age=36)
+print(txt1)
+
+print('%s is %d years old.' % ('Sam', 3))
+print("%s" % 'Hello, World!')
+print(f" the {txt1} is {setup}")
+
+song="""When an eel grabs your arm,
+And it causes great harm,
+That's - a moray!"""
