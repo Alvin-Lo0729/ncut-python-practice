@@ -47,3 +47,11 @@ def myFunc2():
 
 myFunc2()
 print("Python is :", x)
+
+
+def myfunc3():
+    global j
+    j="test33333"
+
+myfunc3()
+print("python is "+j)
