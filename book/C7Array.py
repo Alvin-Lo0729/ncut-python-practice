@@ -71,8 +71,15 @@ print(numbers)
 
 marxes = ['Groucho', 'Chico', 'Harpo','Gummo','Karl']
 
-# del marxes[2:5]
-# print(marxes)
+del marxes[-1]
+print(marxes)
 
-marxes.remove('Karl')
+marxes=['Groucho', 'Chico', 'Harpo','Zeppo']
+popValue =marxes.pop()
+print(popValue)
+
+print(marxes)
+
+popValue=marxes.pop(1)
+print(popValue)
 print(marxes)
