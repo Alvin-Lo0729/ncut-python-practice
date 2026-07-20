@@ -180,3 +180,8 @@ print(f'a==b:{a==b}')
 print(f'a<=b:{a<=b}')
 print(f'a<b:{a<b}')
 # page113
+
+cheeses=['brie','gjetost','havarti']
+for cheese in cheeses:
+  print(f'cheese:{cheese}')
+
