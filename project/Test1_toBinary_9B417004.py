@@ -3,7 +3,6 @@
 data = int(input())
 st = ""
 
-print(f'{bin(data)}')
 
 if data == 0:
   print(0)
