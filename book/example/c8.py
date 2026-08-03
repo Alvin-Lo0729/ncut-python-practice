@@ -48,3 +48,23 @@ print(squares)
 #8.11
 oddValue={kk for kk in range(10) if kk%2==1}
 print(oddValue)
+
+#8.12
+for thing in (f'Got {number}' for number in range(10)):
+  print(thing)
+
+#8.13
+key=('optimist','pessimist','troll')
+value=('The glass is half full','The glass is half empty','how did you get a glass')
+
+data=dict(zip(key,value))
+print(data)
+
+#8.14
+
+titles=['Creature of Habit','Crewel Fate','Sharks on a Plane']
+plots=['A nun turns into a monster','A haunted yarn shop','Check your exits']
+
+movie=dict(zip(titles,plots))
+print(movie)
+print(movie.get('Creature of Habit'))
