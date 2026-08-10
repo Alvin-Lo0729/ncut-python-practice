@@ -1,6 +1,5 @@
 import random
 
-
 # 確認是否獲勝
 def check_win(board, type_value):
   win_lines = [
@@ -24,7 +23,6 @@ def clear_board(board):
 # 放資料
 def put(board, position, type_value):
   board[position] = type_value
-
 # 選擇圖形
 def choice_input_type():
   while True:
@@ -57,6 +55,33 @@ def choice_first():
     else:
       return "you" if humane_number > computer_number else "computer"
 
+def play(index_charest,vv,board):
+  for count in range(9):
+    emptyColumn = [number+1 for number in range(0,9) if board[number] is None]
+    print(f'{index_charest}是{vv.get(index_charest)} ，開始選擇{emptyColumn}')
+    if (index_charest == "you"):
+      while True:
+        try:
+          print_type_value = int(input())
+          if print_type_value in range(1, 10):
+            put(board, print_type_value - 1, vv.get(index_charest))
+            break
+          else:
+            print("請輸入(1~9)")
+        except ValueError:
+          print("Error: That input is not an integer.")
+    else:
+      indexx=random.randint(0,len(emptyColumn))
+      choiceValue=emptyColumn[indexx]
+      print(f'機器人選擇{choiceValue}')
+      put(board, choiceValue - 1, vv.get(index_charest))
+
+    print_board(board)
+    if check_win(board, vv.get(index_charest)):
+      return index_charest
+    index_charest = "you" if index_charest == "computer" else "computer"
+  return  None
+
 print("Hello  請開始玩井字遊戲")
 
 board = [None] * 9
@@ -67,11 +92,12 @@ vv={"you":user_print_type,"computer":computer_print_type}
 
 print(f'你的選擇{user_print_type}, 機器人選擇{computer_print_type}')
 
-index_charest=choice_first()
+winner = play(choice_first(),vv,board)
+if winner is None:
+  print("平手")
+else:
+  print(f'{winner}獲勝')
 
-for count in range(9):
-  print(f'{index_charest}是{vv.get(index_charest)} ，開始選擇(1~9)')
-  if(index_charest=="you"):
 
 
 
