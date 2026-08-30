@@ -55,3 +55,109 @@ def whatis(thing):
 tt=(0,0.0,'',"",'''''',(),[],{},set(),0.00001,[0],[''],' ')
 for ts in tt:
   whatis(ts);
+
+
+def menu(wine,entree,dessert):
+  return {"wine":wine,"entree":entree,"dessert":dessert}
+
+print(f'menu:{menu('chardonnay','chicken','cake')}')
+
+menu_data=menu(entree="dddd",dessert="eeee",wine="aaa")
+print(f'menu:{menu_data}')
+
+def menu2(wine="chardonnay",entree="no way",dessert="pudding"):
+  return {"wine":wine,"entree":entree,"dessert":dessert}
+
+print(f'menu2:{menu2(wine="coke")}')
+
+def print_args(*args):
+  print(f'Positional tuple:{args}')
+print_args(1,2,3,4)
+print(f'---------------------')
+print_args()
+
+
+def print_kwargs(**kwargs):
+  return kwargs
+
+
+
+kw=print_kwargs(wine='abcd',sasdfs='dddd',dessert='pudding')
+print(kw.get('wine'))
+
+
+def print_data(data,*,start=0,end=100):
+  for value in(data[start:end]):
+    print(value)
+data=['a','b','c','d','e','f','g','h','i']
+print_data(data)
+print(f'===================')
+print_data(data,start=5)
+
+print(f'===================')
+def echo(anything):
+  'echo returns its input argument'
+  return anything;
+
+help(echo)
+print(f'==================')
+help(echo.__doc__)
+print(f'==================')
+def answer():
+  print(42)
+
+def run_something(func):
+  func()
+
+run_something(answer)
+
+def add_args(arg1,arg2):
+  print(arg1+arg2)
+
+# def run_something_with_args(func,arg1,arg2):
+#   func(arg1,arg2)
+#
+# run_something_with_args(add_args(5,9))
+
+def sum_args(*args):
+  return sum(args)
+
+def run_with_positional_args(func,*args):
+  return func(*args)
+
+sumValue=run_with_positional_args(sum_args,1,2,3,4)
+print(sumValue)
+
+def outer(a,b):
+  def inner(c,d):
+    return c+d
+  return inner(a,b)
+
+print(outer(4,7))
+
+def knights2(saying):
+  def inner2():
+    return "we are the knights who say: '%s'" % saying
+  return inner2
+
+a=knights2("hello")
+print(type(a))
+print(a)
+b=knights2("world")
+print(type(b))
+print(b)
+print(a())
+print(b())
+
+def edit_story(words,func):
+  for word in words:
+    print(func(word))
+
+stairs=['thud','meow','thud','hiss']
+
+def enliven(word):
+  return word.capitalize()+"!"
+
+edit_story(stairs,enliven)
+print("=====================")
+edit_story(stairs,lambda word,kk='55': word.capitalize()+"!")
