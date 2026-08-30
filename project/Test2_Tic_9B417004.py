@@ -63,16 +63,15 @@ def play(index_charest,vv,board):
       while True:
         try:
           print_type_value = int(input())
-          if print_type_value in range(1, 10):
+          if print_type_value in emptyColumn:
             put(board, print_type_value - 1, vv.get(index_charest))
             break
           else:
-            print("請輸入(1~9)")
+            print(f"請輸入還沒下過的位置 {emptyColumn}")
         except ValueError:
           print("Error: That input is not an integer.")
     else:
-      indexx=random.randint(0,len(emptyColumn))
-      choiceValue=emptyColumn[indexx]
+      choiceValue=random.choice(emptyColumn)
       print(f'機器人選擇{choiceValue}')
       put(board, choiceValue - 1, vv.get(index_charest))
 
