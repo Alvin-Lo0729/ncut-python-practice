@@ -1,81 +1,26 @@
-# class Car():
-#   pass
-#
-# class Yugo(Car):
-#   pass
-#
-# print(issubclass(Yugo,Car))
-#
-# give_me_a_car=Car()
-# give_me_a_yugo=Yugo()
-
-
-class Car():
-  def exclaim(self):
-    print("I'm a Car!")
-
-
-class Yugo(Car):
-  def exclaim(self):
-    print("I'm a Yugo")
-
-  def need_a_push(self):
-    print("A little help here?")
-
-give_me_a_car=Car()
-give_me_a_yugo=Yugo()
-
-give_me_a_car.exclaim()
-give_me_a_yugo.exclaim()
-
-class Person():
-  def __init__(self,name):
+class Cat:
+  def __init__(self,name,age):
     self.name=name
-
-class MDPerson(Person):
-  def __init__(self,name):
-    self.name="Doctor "+name
-
-class JDPerson(Person):
-  def __init__(self,name):
-    self.name=name+", Esquire"
-
-class EmailPerson(Person):
-  def __init__(self,name,email):
-    super().__init__(name)
-    self.email=email
-
-person=Person("Fudd")
-doctor=MDPerson("Fudd")
-lawyer=JDPerson("Fudd")
-me=EmailPerson("Fudd",'ak47237496@gmail.com')
-
-print(f'person name:{person.name}')
-print(f'doctor name:{doctor.name}')
-print(f'lawyer name:{lawyer.name}')
-print(f'me name:{me.name} , my email:{me.email}')
-
-give_me_a_yugo.need_a_push()
-
-class Animal:
-  def says(self):
-    return "I speak!"
-
-class Horse(Animal):
-  def says(self):
-    return "Neigh!"
-
-class Donkey(Animal):
-  def says(self):
-    return "Hee-haw"
-
-class Mule(Donkey,Horse):
-  pass
-
-class Hinny(Horse,Donkey):
-  pass
+    self.age=age
 
 
-print(Mule.mro())
-print("========")
-print(Hinny.mro())
+# a_cat=Cat()
+# another_cat=Cat()
+#
+# print(a_cat)
+# print(another_cat)
+#
+# a_cat.age=3
+# a_cat.name="abcd"
+# a_cat.namesis=another_cat
+
+
+# print(a_cat.age)
+# print(a_cat.name)
+# print(a_cat.namesis)
+
+
+furball=Cat("furball",5)
+print(furball)
+print(furball.age)
+print(furball.name)
