@@ -62,12 +62,13 @@ def next_steps(maze, pos, visited) -> list:
     BFS 傳「全場共用」的腳印      -> 一格被誰碰過就永遠不再碰
   """
   allow_list=[]
-  maze_row = len(maze)-1
-  maze_column = len(maze[0])-1
 
 
+  return [(0, 1), (1, 0)]
 
 
+def allow_way_by_pos(pos:tuple)->list:
+  row, col = pos
 
 # ---------------------------------------------------------------- Step 3
 def find_all_paths(maze) -> list:
