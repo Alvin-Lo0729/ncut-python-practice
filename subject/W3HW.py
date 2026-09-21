@@ -26,7 +26,6 @@ print(f'西元{year}年，{is_leap_year_bool}')
 
 def findBig(a: int, b: int, c: int) -> int:
   if a > b and a > c:
-    if a > c:
       return a
   elif b > c:
     return b
