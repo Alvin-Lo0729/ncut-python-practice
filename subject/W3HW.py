@@ -61,6 +61,26 @@ def ai_command(param:str):
 
 
 
+def park_ticket_price(identity: str, age: int) -> int:
+
+  if "本市市民" in identity:
+    if age >=65:
+      return 0
+    return 100
+  else:
+    if age < 12:
+      return 250
+    return 500
+
+
+def parking_fee(hours: int) -> int:
+  money = 0
+  hours_copy=hours+0
+  if(hours_copy > 3):
+    money+=(hours_copy-2)*40
+
+
+
 if __name__ == "__main__":
   # a = int(input("請輸入三角形Ａ邊長"))
   # b = int(input("請輸入三角形B邊長"))
@@ -84,3 +104,7 @@ if __name__ == "__main__":
 
   action=input("請輸入AI撥放器的動作(play、stop、next)")
   print(f'ai_command:{ai_command(action)}')
+
+  identity = input("請輸入你的身分(外縣市遊客、本市市民)")
+  age = int(input("請輸入你的年齡"))
+  print(f'你的主題樂園票價為:{park_ticket_price(identity, age)}')

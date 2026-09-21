@@ -1,4 +1,4 @@
-from subject.W3HW import (what_kind_triangle, is_leap_year, find_big,
+from subject.W3HW import (what_kind_triangle, park_ticket_price, parking_fee, is_leap_year, find_big,
                           high_way_discount_by_identity, ai_command)
 
 
@@ -166,3 +166,131 @@ class TestAiCommand:
 外縣市遊客：全票 500 元；若年齡小於 12 歲則為兒童票 250 元。
 本市市民：一律享市民優惠票 100 元，但如果年齡大於等於 65 歲則完全免費。
 '''
+
+
+class TestParkTicketPrice:
+  """依身分與年齡計算門票價格。
+  外縣市遊客：全票 500，未滿 12 歲為兒童票 250。
+  本市市民：一律 100，但 65 歲（含）以上免費。"""
+
+  # --- 外縣市遊客 ---
+  def test_an_adult_visitor_from_another_city_pays_the_full_price(self):
+    assert park_ticket_price("外縣市遊客", 30) == 500
+
+  def test_a_child_visitor_from_another_city_pays_the_child_price(self):
+    assert park_ticket_price("外縣市遊客", 8) == 250
+
+  def test_a_visitor_aged_11_is_still_a_child(self):
+    # 邊界值：「小於 12」不含 12，所以 11 歲仍是兒童票
+    assert park_ticket_price("外縣市遊客", 11) == 250
+
+  def test_a_visitor_aged_12_already_pays_the_full_price(self):
+    # 邊界值：守住 < 不能寫成 <=
+    assert park_ticket_price("外縣市遊客", 12) == 500
+
+  def test_a_senior_visitor_from_another_city_gets_no_discount(self):
+    # 65 歲免費只給本市市民，外縣市的長者仍是全票
+    assert park_ticket_price("外縣市遊客", 70) == 500
+
+  # --- 本市市民 ---
+  def test_an_adult_resident_pays_the_resident_price(self):
+    assert park_ticket_price("本市市民", 30) == 100
+
+  def test_a_child_resident_also_pays_the_resident_price(self):
+    # 題目寫「一律」享市民優惠，所以兒童票 250 不適用於市民
+    assert park_ticket_price("本市市民", 8) == 100
+
+  def test_a_resident_aged_64_still_pays_the_resident_price(self):
+    # 邊界值：「大於等於 65」不含 64
+    assert park_ticket_price("本市市民", 64) == 100
+
+  def test_a_resident_aged_65_gets_in_for_free(self):
+    # 邊界值：守住 >= 不能寫成 >
+    assert park_ticket_price("本市市民", 65) == 0
+
+  def test_a_senior_resident_gets_in_for_free(self):
+    assert park_ticket_price("本市市民", 80) == 0
+
+  # --- 不認得的身分：整組比照外縣市遊客 ---
+  def test_an_unrecognised_identity_is_treated_as_a_visitor_from_another_city(self):
+    assert park_ticket_price("阿貓阿狗", 30) == 500
+
+  def test_an_unrecognised_child_also_gets_the_child_price(self):
+    # 這條才是真正釘住決定的測試：
+    # 若改成「不認得就一律收全票 500」，只有這一條會紅
+    assert park_ticket_price("阿貓阿狗", 8) == 250
+
+
+'''
+【題目】某停車場採用分段累進計費，收費標準如下：
+
+2 小時以內（含）：每小時 30 元。
+
+超過 2 小時 ～ 5 小時（含）：超過的部分，每小時 40 元。
+
+超過 5 小時以上：超過的部分，每小時 60 元。
+
+當日最高收費上限：300 元（若計算出的總金額超過 300 元，以 300 元計）。
+
+請設計一個程式，讓使用者輸入停車時數（整數），並計算出應付的總停車金額。
+
+【注意事項】本題考「累進制（分段計費）」邏輯，不能直接用總時數乘以最高級距的單價。
+
+例如停 6 小時，不能直接算 6 × 60。範例說明：
+
+若輸入：6計算方式為：前 2 小時：2 × 30 = 60 元
+
+第 3 到第 5 小時（共 3 小時）：3 × 40 = 120 元
+
+超過 5 小時的部分（共 1 小時）：1 × 60 = 60 元
+
+總計：60 + 120 + 60 = 240 元
+
+【預期輸出】總計：240 元
+
+'''
+
+
+class TestParkingFee:
+  """分段累進停車費。
+  前 2 小時每小時 30；第 3~5 小時每小時 40；第 6 小時起每小時 60。
+  當日總額上限 300 元。"""
+
+  # --- 各級距的代表值 ---
+  def test_not_parking_at_all_costs_nothing(self):
+    assert parking_fee(0) == 0
+
+  def test_one_hour_is_charged_at_the_first_tier_rate(self):
+    assert parking_fee(1) == 30
+
+  # --- 門檻 2 小時的邊界 ---
+  def test_exactly_two_hours_is_still_all_first_tier(self):
+    # 「2 小時以內（含）」的「含」：2 小時全部算 30 元
+    assert parking_fee(2) == 60
+
+  def test_the_third_hour_is_charged_at_the_second_tier_rate(self):
+    # 60 + 40。若誤寫成一口價 3 × 40 = 120 就會紅
+    assert parking_fee(3) == 100
+
+  # --- 門檻 5 小時的邊界 ---
+  def test_exactly_five_hours_ends_the_second_tier(self):
+    # 「～5 小時（含）」的「含」：60 + 40×3
+    # 同時證明第二級距是「每小時」累加，不是只收一次 40
+    assert parking_fee(5) == 180
+
+  def test_the_sixth_hour_is_charged_at_the_third_tier_rate(self):
+    # 題目自己的範例：60 + 120 + 60
+    # 若誤寫成一口價 6 × 60 = 360 就會紅
+    assert parking_fee(6) == 240
+
+  # --- 上限 300 的邊界（要自己算出來，題目沒直接給）---
+  def test_seven_hours_lands_exactly_on_the_cap(self):
+    # 累進算出來剛好 300，還沒被上限砍到
+    assert parking_fee(7) == 300
+
+  def test_eight_hours_is_cut_down_by_the_daily_cap(self):
+    # 累進算出來是 360，這是上限第一次真正生效
+    assert parking_fee(8) == 300
+
+  def test_parking_all_day_never_costs_more_than_the_cap(self):
+    assert parking_fee(24) == 300
