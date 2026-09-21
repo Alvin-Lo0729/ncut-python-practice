@@ -1,5 +1,5 @@
 from subject.W3HW import (what_kind_triangle, is_leap_year, find_big,
-                          high_way_discount_by_identity)
+                          high_way_discount_by_identity, ai_command)
 
 
 class TestIsLeapYear:
@@ -50,6 +50,8 @@ class TestFindBig:
 若持有會員卡，可在上述折扣後的金額上再打 95 折（若沒折扣則是原價打 95 折）。請輸出最終票價。
 【預期輸出】（輸入 學生 且會員卡輸入 Y）：您的最終票價為: 760.0 元
 '''
+
+
 class TestHighWayDiscountByIdentity:
 
   def test_a_senior_with_a_member_card_gets_both_discounts(self):
@@ -113,7 +115,8 @@ class TestWhatKindTriangle:
   def test_the_second_side_being_too_long_is_not_a_triangle(self):
     assert what_kind_triangle(1, 5, 2) == "這不是三角形"
 
-  def test_two_sides_that_exactly_equal_the_third_are_flat_and_not_a_triangle(self):
+  def test_two_sides_that_exactly_equal_the_third_are_flat_and_not_a_triangle(
+      self):
     # 邊界值：1 + 2 剛好等於 3，會壓扁成一條線。
     # 這條測試守的是三角不等式必須用 > 而不是 >=
     assert what_kind_triangle(1, 2, 3) == "這不是三角形"
@@ -139,6 +142,27 @@ class TestWhatKindTriangle:
 輸入其他任何指令：一律印出 "抱歉，我聽不懂這個指令"
 
 '''
+
+
 class TestAiCommand:
   def test_play(self):
-    assert ai_command
+    assert ai_command("play") == "開始播放音樂"
+
+  def test_stop(self):
+    assert ai_command("stop") == "音樂已暫停"
+
+  def test_next(self):
+    assert ai_command("next") == "切換至下一首歌曲"
+
+  def test_other(self):
+    assert ai_command("test11123") == "抱歉，我聽不懂這個指令"
+
+'''
+【題目描述】某主題樂園的門票收費標準如下：
+
+第一層分類（身分）：區分為「外縣市遊客」與「本市市民」。
+
+第二層分類（年齡）：
+外縣市遊客：全票 500 元；若年齡小於 12 歲則為兒童票 250 元。
+本市市民：一律享市民優惠票 100 元，但如果年齡大於等於 65 歲則完全免費。
+'''

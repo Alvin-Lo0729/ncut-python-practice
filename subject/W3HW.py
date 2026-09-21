@@ -46,6 +46,21 @@ def high_way_discount_by_identity(identity: str, has_member_card: bool) -> int:
   return money
 
 
+
+def ai_command(param:str):
+
+  match param:
+    case "play":
+      return "開始播放音樂"
+    case "stop":
+      return "音樂已暫停"
+    case "next":
+      return "切換至下一首歌曲"
+    case _:
+      return "抱歉，我聽不懂這個指令"
+
+
+
 if __name__ == "__main__":
   # a = int(input("請輸入三角形Ａ邊長"))
   # b = int(input("請輸入三角形B邊長"))
@@ -63,6 +78,9 @@ if __name__ == "__main__":
   #
   # print(f'最大的數字為:{find_big(a, b, c)}')
 
-  identity = input("請輸入你的身分(老人、學生、一般人)")
-  has_card = input("請問是否有會員卡(Y、N)").lower() == "y"
-  print(f'你的票價為:{high_way_discount_by_identity(identity, has_card)}')
+  # identity = input("請輸入你的身分(老人、學生、一般人)")
+  # has_card = input("請問是否有會員卡(Y、N)").lower() == "y"
+  # print(f'你的票價為:{high_way_discount_by_identity(identity, has_card)}')
+
+  action=input("請輸入AI撥放器的動作(play、stop、next)")
+  print(f'ai_command:{ai_command(action)}')
