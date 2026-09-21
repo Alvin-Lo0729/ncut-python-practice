@@ -12,25 +12,23 @@
 # else:
 #   print("這不是三角形")
 def is_leap_year(year_parmeter: int) -> bool:
-
-  if (year_parmeter % 400) == 0 or ((year_parmeter % 4 == 0) and (year_parmeter % 100 != 0)):
+  if (year_parmeter % 400) == 0 or (
+      (year_parmeter % 4 == 0) and (year_parmeter % 100 != 0)):
     return True
   else:
     return False
-year=int(input("請輸入年份，幫你判斷是不是閏年:"))
-is_leap_year_bool=is_leap_year(year)
+
+
+year = int(input("請輸入年份，幫你判斷是不是閏年:"))
+is_leap_year_bool = is_leap_year(year)
 print(f'西元{year}年，{is_leap_year_bool}')
 
 
-
-def findBig(a:int,b:int,c:int)->int:
-  if a>b:
-    if a>c :
+def findBig(a: int, b: int, c: int) -> int:
+  if a > b and a > c:
+    if a > c:
       return a
-    else:
-      return c
-  elif b>c:
+  elif b > c:
     return b
-  elif c>a:
-
-
+  else:
+    return c
