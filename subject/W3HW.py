@@ -70,17 +70,23 @@ def park_ticket_price(identity: str, age: int) -> int:
 
 
 def parking_fee(hours: int) -> int:
+  if hours <= 0:
+    return 0
+
+  remaining=hours
   money = 0
-  if hours > 5:
-    money += ((hours - 5) * 60)
+  if remaining>0:
+    billed=remaining if remaining<=2 else 2
+    money+=billed*30
+    remaining-=billed
 
-  if hours > 2:
-    temp_hour = (3 if hours > 5 else hours - 2)
-    money += (temp_hour * 40)
+  if remaining>0:
+    billed=remaining if remaining<=3 else 3
+    money+=billed*40
+    remaining-=billed
 
-  if hours > 0:
-    temp_hour = (2 if hours > 2 else hours)
-    money += (temp_hour * 30)
+  if remaining>0:
+    money += remaining * 60
 
   if money > 300:
     money = 300
