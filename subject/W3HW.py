@@ -46,9 +46,7 @@ def high_way_discount_by_identity(identity: str, has_member_card: bool) -> int:
   return money
 
 
-
-def ai_command(param:str):
-
+def ai_command(param: str):
   match param:
     case "play":
       return "開始播放音樂"
@@ -60,11 +58,9 @@ def ai_command(param:str):
       return "抱歉，我聽不懂這個指令"
 
 
-
 def park_ticket_price(identity: str, age: int) -> int:
-
   if "本市市民" in identity:
-    if age >=65:
+    if age >= 65:
       return 0
     return 100
   else:
@@ -75,10 +71,21 @@ def park_ticket_price(identity: str, age: int) -> int:
 
 def parking_fee(hours: int) -> int:
   money = 0
-  hours_copy=hours+0
-  if(hours_copy > 3):
-    money+=(hours_copy-2)*40
+  if hours > 5:
+    money += ((hours - 5) * 60)
 
+  if hours > 2:
+    temp_hour = (3 if hours > 5 else hours - 2)
+    money += (temp_hour * 40)
+
+  if hours > 0:
+    temp_hour = (2 if hours > 2 else hours)
+    money += (temp_hour * 30)
+
+  if money > 300:
+    money = 300
+
+  return money
 
 
 if __name__ == "__main__":
@@ -102,9 +109,12 @@ if __name__ == "__main__":
   # has_card = input("請問是否有會員卡(Y、N)").lower() == "y"
   # print(f'你的票價為:{high_way_discount_by_identity(identity, has_card)}')
 
-  action=input("請輸入AI撥放器的動作(play、stop、next)")
-  print(f'ai_command:{ai_command(action)}')
+  # action = input("請輸入AI撥放器的動作(play、stop、next)")
+  # print(f'ai_command:{ai_command(action)}')
+  #
+  # identity = input("請輸入你的身分(外縣市遊客、本市市民)")
+  # age = int(input("請輸入你的年齡"))
+  # print(f'你的主題樂園票價為:{park_ticket_price(identity, age)}')
 
-  identity = input("請輸入你的身分(外縣市遊客、本市市民)")
-  age = int(input("請輸入你的年齡"))
-  print(f'你的主題樂園票價為:{park_ticket_price(identity, age)}')
+  parking_hour=int(input("請輸入停車時數"))
+  print(f'你停了{parking_hour}小時，停車費共:{parking_fee(parking_hour)}')
