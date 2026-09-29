@@ -101,7 +101,7 @@ class TestFindAllPaths:
       [(0, 0), (0, 1), (1, 1)],
       [(0, 0), (1, 0), (1, 1)],
     ])
-†
+
   def test_unreachable_goal_gives_no_paths(self):
     assert find_all_paths(BLOCKED) == []
 
