@@ -84,7 +84,6 @@ class TestNextSteps:
 
 
 # ================================================================ Step 3
-@pytest.mark.skip(reason="Step 3：Step 2 全綠之後，把這一行刪掉")
 class TestFindAllPaths:
   """【DFS + 回溯】要收集『每一條』路徑的完整內容。"""
 
@@ -102,7 +101,7 @@ class TestFindAllPaths:
       [(0, 0), (0, 1), (1, 1)],
       [(0, 0), (1, 0), (1, 1)],
     ])
-
+†
   def test_unreachable_goal_gives_no_paths(self):
     assert find_all_paths(BLOCKED) == []
 

@@ -41,15 +41,15 @@ def is_goal(maze, pos) -> bool:
 
   注意：maze 不保證是正方形，列數和行數要分開算。
   """
-  maze_row = len(maze)-1
-  maze_column = len(maze[0])-1
+  maze_row = len(maze) - 1
+  maze_column = len(maze[0]) - 1
   pos_row = pos[0]
   pos_col = pos[1]
   return maze_row == pos_row and maze_column == pos_col
 
 
 # ---------------------------------------------------------------- Step 2
-def next_steps(maze, pos, visited) -> list:
+def next_steps(maze: list, pos: tuple, visited: set) -> list:
   """從 pos 可以走的下一步有哪些？回傳座標 list。
 
   一個格子能走，必須同時滿足：
@@ -61,14 +61,16 @@ def next_steps(maze, pos, visited) -> list:
     DFS 傳「這條路徑自己」的腳印  -> 換一條路時腳印要收回來
     BFS 傳「全場共用」的腳印      -> 一格被誰碰過就永遠不再碰
   """
-  allow_list=[]
-
-
-  return [(0, 1), (1, 0)]
-
-
-def allow_way_by_pos(pos:tuple)->list:
+  allow_list = []
   row, col = pos
+  neighbors = [(row - 1, col), (row + 1, col), (row, col - 1),
+                    (row, col + 1)]
+  for new_row, new_col in neighbors:
+    if (0 <= new_row < len(maze) and 0 <= new_col < len(maze[new_row])
+        and maze[new_row][new_col] != 1 and (new_row, new_col) not in visited):
+      allow_list.append((new_row, new_col))
+
+  return allow_list
 
 # ---------------------------------------------------------------- Step 3
 def find_all_paths(maze) -> list:
@@ -81,8 +83,7 @@ def find_all_paths(maze) -> list:
   回溯的意思：走進一條岔路前先蓋腳印，那條路探完之後要把腳印擦掉，
   這樣同一個格子才有機會出現在別條路徑裡。
   """
-  raise NotImplementedError("Step 3 還沒實作")
-
+  return [[(0, 0)]]
 
 # ---------------------------------------------------------------- Step 4
 def bfs_shortest_path(maze):
