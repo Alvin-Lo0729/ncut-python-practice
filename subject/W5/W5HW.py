@@ -120,7 +120,7 @@ def shopping_cart():
 def throw_card():
   blood=3
   while blood>0:
-    throw_card_str=input("請輸入抽獎結果")
+    throw_card_str=input("請輸入抽獎結果：")
     match throw_card_str:
       case "中獎":
         print("勇者抽到中獎，體力值扣1")
