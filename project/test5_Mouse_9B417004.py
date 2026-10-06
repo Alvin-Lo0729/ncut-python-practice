@@ -73,7 +73,7 @@ def next_steps(maze: list, pos: tuple, visited: set) -> list:
   return allow_list
 
 # ---------------------------------------------------------------- Step 3
-def find_all_paths(maze) -> list:
+def find_all_paths(maze) -> list[list[tuple[int, int]]]:
   """【DFS + 回溯】找出從左上角走到右下角的「所有」路徑。
 
   回傳 list of path，每個 path 是 [(0,0), ..., (終點)]。
@@ -84,9 +84,22 @@ def find_all_paths(maze) -> list:
   這樣同一個格子才有機會出現在別條路徑裡。
   """
   start = next_steps(maze,(0,0),{})
+  if len(start)<=0:
+    return [[(0, 0)]]
+
+  # 從開頭找往下的路徑，當找尋路徑後，如果有多條路徑，就要多產生陣列並放入
+  waiting_array=start
+  vv=(0,0)
+  now_value= {vv}
+  while waiting_array<0:
+    next=next_steps(maze, waiting_array[0], now_value)
 
 
-  return [[(0, 0)]]
+
+
+
+
+
 
 # ---------------------------------------------------------------- Step 4
 def bfs_shortest_path(maze):

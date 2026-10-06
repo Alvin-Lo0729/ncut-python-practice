@@ -121,15 +121,10 @@ def throw_card():
   blood=3
   while blood>0:
     throw_card_str=input("請輸入抽獎結果：")
-    match throw_card_str:
-      case "中獎":
-        print("勇者抽到中獎，體力值扣1")
-      case "沒中":
-        print("勇者抽到沒中獎，體力值扣1")
-      case _:
-        print("號誌異常，本次抽卡無效（不扣體力）！")
-        continue
-
+    if not(throw_card_str=="中獎" or throw_card_str =="沒中"):
+      print("號誌異常，本次抽卡無效（不扣體力）！")
+      continue
+    print(f"勇者抽到{throw_card_str}，體力值扣1")
     blood -= 1
   print("勇者體力為0，抽獎結束")
 
