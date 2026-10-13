@@ -36,8 +36,8 @@ while not (0 <= input_value <= 1000):
 
 max_value = input_value
 min_value = input_value
-sum_value = input_value
-count_number = 1
+sum_value = 0
+count_number = 0
 
 while input_value > -1:
   if 0 <= input_value <= 1000:
