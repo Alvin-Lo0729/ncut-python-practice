@@ -88,11 +88,16 @@ def find_all_paths(maze) -> list[list[tuple[int, int]]]:
     return [[(0, 0)]]
 
   # 從開頭找往下的路徑，當找尋路徑後，如果有多條路徑，就要多產生陣列並放入
+  #還未走的
+
   waiting_array=start
   vv=(0,0)
+  #走過的
   now_value= {vv}
   while waiting_array<0:
-    next=next_steps(maze, waiting_array[0], now_value)
+
+    next=next_steps(maze,waiting_array[0] , now_value)
+
 
 
 
