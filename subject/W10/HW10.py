@@ -64,5 +64,20 @@ def analysis_password(pw:str)->bool:
   return has_big_alphabet and has_little_alphabet and has_any_number
 
 
-pw_input=input("請輸入密碼，確認是否符合條件")
-print(f'{"Valid" if analysis_password(pw_input) else "Invalid"}')
+def check_pw():
+  pw_input = input("請輸入密碼，確認是否符合條件")
+  print(f'{"Valid" if analysis_password(pw_input) else "Invalid"}')
+
+
+def find_and_replace(input_str:str,search_str:str,replace_str:str):
+  print(f'{search_str}，在{input_str}第一次出現的位置{input_str.find(search_str)}')
+  print(f'{search_str}，在{input_str}出現次數{input_str.count(search_str)}')
+  print(f'在{input_str}中將第一個找到的{search_str}替換成{replace_str},字串為:{input_str.replace(search_str, replace_str, 1)}')
+  print(f'在{input_str}中將所有的{search_str}替換成{replace_str}的字串為:{input_str.replace(search_str, replace_str)}')
+
+def string_value_change():
+  iv = input("請輸入字串")
+  ss = input("請輸入要找尋的字串")
+  rs = input("請輸入要替代的字串")
+
+  find_and_replace(iv, ss, rs)
