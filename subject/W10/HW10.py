@@ -81,3 +81,17 @@ def string_value_change():
   rs = input("請輸入要替代的字串")
 
   find_and_replace(iv, ss, rs)
+
+
+g=[[1,1,0,1],
+   [0,1,1,1],
+   [1,0,1,1]]
+
+paris=0
+
+for row in g:
+  for k in range(len(row)-1):
+    if row[k]+row[k+1]==2:
+      paris+=1
+
+print(paris)
